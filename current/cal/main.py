@@ -1,5 +1,6 @@
 from gcsa.event import Event
 from gcsa.google_calendar import GoogleCalendar
+import os
 
 from datetime import datetime, timedelta
 

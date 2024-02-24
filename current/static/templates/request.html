@@ -1,0 +1,19 @@
+<!-- generate for a form to handle the case request model -->
+
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Request Login Form</h2>
+    <form action="case-request" method="post">
+    <h5>Case Name</h5>
+    <input type="text" name="casename" placeholder="procedure name"></input>
+    <h5>Patient's NHS no </h5>
+    <input name="nhsno" placeholder="nhs no" type="number"></input>
+    <h5>Procedure Date</h5>
+    <input name="date" placeholder="date" type="date"></input>
+    <h5>Estimate length</h5>
+    <input name="length" placeholder="length" type="number"></input>
+    <input type="submit"></input>
+    </form>
+{% endblock %}
+```
