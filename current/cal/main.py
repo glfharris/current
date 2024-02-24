@@ -53,14 +53,6 @@ def allocate(day=datetime.today(), buffer=15):
 
 if __name__ == "__main__":
     del_spoof_data()
-    cases = gen_spoof_data()
-
-    for c in cases:
-        list_case(c)
-
-    events = allocate()
-
-    for e in events:
-        print(e)
+#    cases = gen_spoof_data()
 
 
