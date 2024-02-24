@@ -4,22 +4,63 @@ import os
 
 from datetime import datetime, timedelta
 
-CURRENT_CAL_ID = "3a784af39e091f5fb78f38e1f205f562548f7cba1819c5a4c2c0ef7c10194e4b@group.calendar.google.com"
+import json
 
-CREDENTIALS_PATH = "creds.json"
+from current.api.models import CaseRequest
 
-calendar = GoogleCalendar(CURRENT_CAL_ID,
-        credentials_path=CREDENTIALS_PATH)
+from current.cal import calendar
+from current.cal.spoof import gen_spoof_data,del_spoof_data
 
-# event = Event(
-#         "Appendix",
-#         start=datetime.now(),
-#         end=datetime.now() + timedelta(minutes=90),
-#         description="Some text goes here"
-#         )
+def list_case(case_request):
+    meta = {}
+    meta['priority'] = case_request.priority
+    meta['equipment'] = case_request.equipment
 
-# calendar.add_event(event)
+    start_time = datetime.now().replace(hour=7, minute=0)
+    end_time = start_time + timedelta(minutes=case_request.estimated_length)
 
-# for event in calendar:
-#     for thing in event:
-#         print(thing)
+    event = Event(
+            case_request.operation_name,
+            start=start_time,
+            end=end_time,
+            description=json.dumps(meta)
+)
+    
+    calendar.add_event(event)
+
+def allocate(day=datetime.today(), buffer=15):
+
+    events = calendar.get_events(
+            time_min=day.replace(hour=0, minute=0),
+            time_max=day.replace(hour=23, minute=59))
+
+    t = datetime.now().replace(hour=8,minute=0)
+    buffer = timedelta(minutes=buffer)
+
+    events=sorted(events, key=lambda e: e.start - e.end, reverse=True)
+
+    for e in events:
+        duration = e.end - e.start
+        e.start = t
+        e.end = e.start + duration
+        t = e.end + buffer
+
+        calendar.update_event(e)
+
+    return calendar.get_events(
+            time_min=day.replace(hour=0, minute=0),
+            time_max=day.replace(hour=23, minute=59))
+
+if __name__ == "__main__":
+    del_spoof_data()
+    cases = gen_spoof_data()
+
+    for c in cases:
+        list_case(c)
+
+    events = allocate()
+
+    for e in events:
+        print(e)
+
+
