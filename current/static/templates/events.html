@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>events</h2>
+    {% for event in calendar %}
+        <div>
+        <h3>{{ event }}</h3>
+        <p>{{ event.description }}</p>
+        </div>
+        <hr>
+        {% endfor %}  
+{% endblock %}

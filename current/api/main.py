@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-# from current.cal.main import calendar
+from current.cal.main import calendar
 
 app = FastAPI()
 
@@ -29,9 +29,15 @@ async def create_case_request(casename: str = Form(...), length: int = Form(...)
         description=nhsno
         )
 
-    # calendar.add_event(event)
-
+    calendar.add_event(event)
     return {"casename": casename, "length": length, "nhsno": nhsno}
+
+@app.get("/calendar")
+async def get_calendar(request: Request):
+    return templates.TemplateResponse(
+        "events.html", {"request": request, "calendar":calendar}
+    )
+
 
 # @app.post("/caserequest")
 # async def create_case_request(case: CaseRequest):
