@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "current"
+version = "0.1.0"
+description = ""
+authors = ["George L. F. Harris <glfharris@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
