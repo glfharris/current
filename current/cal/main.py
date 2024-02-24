@@ -10,7 +10,7 @@ from current.api.models import CaseRequest
 from current.cal import calendar
 from current.cal.spoof import gen_spoof_data,del_spoof_data
 
-def create_case(case_request):
+def list_case(case_request):
     meta = {}
     meta['priority'] = case_request.priority
     meta['equipment'] = case_request.equipment
@@ -55,7 +55,7 @@ if __name__ == "__main__":
     cases = gen_spoof_data()
 
     for c in cases:
-        create_case(c)
+        list_case(c)
 
     events = allocate()
 
