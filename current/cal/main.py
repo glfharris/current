@@ -9,6 +9,7 @@ CREDENTIALS_PATH = "/home/glfharris/src/current/.credentials/credentials.json"
 
 calendar = GoogleCalendar(CURRENT_CAL_ID,
         credentials_path=CREDENTIALS_PATH)
+
 event = Event(
         "Appendix",
         start=datetime.now(),
