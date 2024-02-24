@@ -20,5 +20,6 @@ calendar = GoogleCalendar(CURRENT_CAL_ID,
 
 # calendar.add_event(event)
 
-for event in calendar:
-    print(event)
+# for event in calendar:
+#     for thing in event:
+#         print(thing)

@@ -5,6 +5,7 @@
     {% for event in calendar %}
         <div>
         <h3>{{ event }}</h3>
+        <p>{{event.start.strftime('%Y-%m-%d') }}: Start {{ event.start.strftime('%H%M') }} End {{event.end.strftime('%H%M') }}</p>
         <p>{{ event.description }}</p>
         </div>
         <hr>
