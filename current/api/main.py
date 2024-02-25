@@ -9,6 +9,8 @@ from fastapi.templating import Jinja2Templates
 from current.cal.main import list_case, allocate, get_todays_events, apply_meta
 from current.cal.spoof import del_spoof_data
 
+from datetime import datetime
+
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="current/static"), name="static")
@@ -16,8 +18,9 @@ app.mount("/static", StaticFiles(directory="current/static"), name="static")
 templates = Jinja2Templates(directory="current/static/templates")
 @app.get("/", response_class=HTMLResponse)
 async def request_form(request: Request):
+    today = datetime.now().strftime("%Y-%m-%d")
     return templates.TemplateResponse(
-        "request.html", {"request": request, "result": "res"}
+            "request.html", {"request": request, "result": "res", "today": today}
     )
 
 #handle the form, we are expecting it to use the CaseRequest model
