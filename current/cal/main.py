@@ -28,11 +28,17 @@ def list_case(case_request):
     
     calendar.add_event(event)
 
-def allocate(day=datetime.today(), buffer=15):
-
+def get_todays_events():
+    day = datetime.today()
     events = calendar.get_events(
             time_min=day.replace(hour=0, minute=0),
             time_max=day.replace(hour=23, minute=59))
+
+    return events
+
+def allocate(day=datetime.today(), buffer=15):
+
+    events = get_todays_events()
 
     t = datetime.now().replace(hour=8,minute=0)
     buffer = timedelta(minutes=buffer)
