@@ -2,20 +2,26 @@
 
 {% extends "base.html" %}
 
+
 {% block content %}
-<div class="case-form">
+<br>
+<div class="card p-3 bg-light case-form">
     <h2>List your case</h2>
     <form action="case-request" method="post">
     <h5>Case Name</h5>
-    <input type="text" name="casename" placeholder="procedure name"></input>
+    <input type="text" name="casename" placeholder="Procedure name"></input>
     <h5>Patient's NHS no </h5>
     <input name="nhsno" value=123456789 placeholder="nhs no" type="number"></input>
     <h5>Procedure Date</h5>
     <input name="date" value="{{ today }}" placeholder="date" type="date"></input>
     <h5>Estimate length</h5>
-    <input name="length" placeholder="length" type="number"></input>
+    <input name="length" placeholder="Length (minutes)" type="number"></input>
     <input type="submit"></input>
     </form>
+</div>
+<br>
+<div class="gcal" align="center">
+<iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=Europe%2FLondon&bgcolor=%23ffffff&mode=WEEK&showNav=0&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0&src=M2E3ODRhZjM5ZTA5MWY1ZmI3OGYzOGUxZjIwNWY1NjI1NDhmN2NiYTE4MTljNWE0YzJjMGVmN2MxMDE5NGU0YkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%239E69AF" style="border:solid 1px #777" width="600" height="600" frameborder="0" scrolling="no"></iframe>
 </div>
 {% endblock %}
 ```
