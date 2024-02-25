@@ -13,14 +13,39 @@
   <link href="/static/current.css" rel="stylesheet">
 
   <title>{{ title }}</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
+<body class="container-sm">
 
-<body>
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">ScheDoula</a>
+        <div class="navbar-collapse collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">List Case</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/calendar">Calendar</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Actions</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="/delete">Delete Data</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+        </div>
+    </nav>
+
+
+<section class="title-section">
+    <img class="site-logo" src="/static/logo.jpg">
+</section>
     {% block content %}
     {% endblock content %}
-</body>
 
 {% block footer %}
 <hr>
@@ -31,4 +56,5 @@
 </footer>
 {% endblock footer %}
 
+</body>
 </html>

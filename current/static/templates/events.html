@@ -3,11 +3,13 @@
 {% block content %}
     <h2>events</h2>
     {% for event in calendar %}
-        <div>
-        <h3>{{ event }}</h3>
-        <p>{{event.start.strftime('%Y-%m-%d') }}: Start {{ event.start.strftime('%H%M') }} End {{event.end.strftime('%H%M') }}</p>
-        <p>{{ event.description }}</p>
+    <hr>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ event.summary}}</h5>
+                <h5 class="card-subtitle text-muted">{{event.start.strftime('%Y-%m-%d') }}: Start {{ event.start.strftime('%H%M') }} End {{event.end.strftime('%H%M') }}</h5>
+                <p class="card-text">{{ event.description }}</p>
+            </div>
         </div>
-        <hr>
-        {% endfor %}  
+    {% endfor %}  
 {% endblock %}

@@ -1,2 +1,14 @@
 
+img.site-logo {
+    max-width: 400px;
+    align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: block;
+}
 
+.case-form h5 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
