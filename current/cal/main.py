@@ -24,6 +24,8 @@ def list_case(case_request):
         meta['equipment'].append("Mesh")
     if "laparotomy" in case_request.operation_name.lower():
         meta['equipment'].append("Scalpel")
+    if "enucleation" in case_request.operation_name.lower():
+        meta['equipment'].append("Ice Cream Scoop")
 
     meta['surgeon'] = "Mr Knives"
     meta['anaesthetist'] = "Dr Sleep"
