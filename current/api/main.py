@@ -11,7 +11,7 @@ from current.cal.spoof import del_spoof_data
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="current/static"), name="static")
 
 templates = Jinja2Templates(directory="current/static/templates")
 @app.get("/", response_class=HTMLResponse)
