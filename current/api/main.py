@@ -20,7 +20,7 @@ templates = Jinja2Templates(directory="current/static/templates")
 async def request_form(request: Request):
     today = datetime.now().strftime("%Y-%m-%d")
     return templates.TemplateResponse(
-            "request.html", {"request": request, "result": "res", "today": today}
+            "request.html", {"request": request, "result": "res", "today": today, "title": "List your case" }
     )
 
 #handle the form, we are expecting it to use the CaseRequest model
@@ -35,7 +35,7 @@ async def create_case_request(casename: str = Form(...), length: int = Form(...)
 async def get_calendar(request: Request):
     calendar = [apply_meta(event) for event in get_todays_events()]
     return templates.TemplateResponse(
-        "events.html", {"request": request, "calendar":calendar}
+            "events.html", {"request": request, "calendar":calendar, "title": "Cases"}
     )
 
 @app.get("/delete")

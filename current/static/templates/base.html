@@ -13,7 +13,7 @@
 
   <link href="/static/current.css" rel="stylesheet">
 
-  <title>{{ title }}</title>
+  <title>{{ title }} | ScheDoula - Delivering your lists with less labour!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -48,11 +48,18 @@
     </nav>
 
 
-<section class="title-section">
+<header class="title-section">
     <img class="site-logo" src="/static/logo.jpg">
-</section>
+    <center>
+    <h3 class="text-muted"><i>Delivering your lists with less labour!</i></h3>
+    </center>
+</header>
+
+<section class="container">
     {% block content %}
     {% endblock content %}
+
+</section>
 
 {% block footer %}
 <hr>
