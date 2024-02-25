@@ -5,6 +5,7 @@ import os
 from datetime import datetime, timedelta
 
 import json
+import pytz
 
 from current.api.models import CaseRequest
 
@@ -72,6 +73,21 @@ def allocate(day=datetime.today(), buffer=15):
 def apply_meta(event):
     event.meta = json.loads(event.description)
     return event
+
+def badge_status(event):
+    now = pytz.UTC.localize(datetime.now())
+
+    if now > event.start and now > event.end:
+        event.badge = "<span class='badge badge-pill bg-success'>Complete</span>"
+
+    if now > event.start and now < event.end:
+        event.badge = "<span class='badge bg-primary'>On going</span>"
+
+    if now < event.start:
+        event.badge = "<span class='badge bg-secondary'>Upcoming</span>"
+
+    return event
+
 
 if __name__ == "__main__":
     events = get_todays_events()

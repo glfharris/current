@@ -6,7 +6,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 # from current.cal import calendar
-from current.cal.main import list_case, allocate, get_todays_events, apply_meta
+from current.cal.main import list_case, allocate, get_todays_events, apply_meta, badge_status
 from current.cal.spoof import del_spoof_data
 
 from datetime import datetime
@@ -33,9 +33,9 @@ async def create_case_request(casename: str = Form(...), length: int = Form(...)
 @app.get("/calendar")
 @app.post("/calendar")
 async def get_calendar(request: Request):
-    calendar = [apply_meta(event) for event in get_todays_events()]
+    calendar = [badge_status(apply_meta(event)) for event in get_todays_events()]
     return templates.TemplateResponse(
-            "events.html", {"request": request, "calendar":calendar, "title": "Cases"}
+            "events.html", {"request": request, "calendar": calendar, "title": "Cases"}
     )
 
 @app.get("/delete")
