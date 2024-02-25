@@ -16,6 +16,16 @@ def list_case(case_request):
     meta['priority'] = case_request.priority
     meta['equipment'] = case_request.equipment
 
+    if "appendix" in case_request.operation_name.lower():
+        meta['equipment'].append("Laproscopic Set")
+    if "hernia" in case_request.operation_name.lower():
+        meta['equipment'].append("Mesh")
+    if "laparotomy" in case_request.operation_name.lower():
+        meta['equipment'].append("Scalpel")
+
+    meta['surgeon'] = "Mr Knives"
+    meta['anaesthetist'] = "Dr Sleep"
+
     start_time = datetime.now().replace(hour=7, minute=0)
     end_time = start_time + timedelta(minutes=case_request.estimated_length)
 
@@ -23,6 +33,7 @@ def list_case(case_request):
             case_request.operation_name,
             start=start_time,
             end=end_time,
+            location="Theatre 2",
             description=json.dumps(meta)
 )
     
@@ -57,8 +68,14 @@ def allocate(day=datetime.today(), buffer=15):
             time_min=day.replace(hour=0, minute=0),
             time_max=day.replace(hour=23, minute=59))
 
+def apply_meta(event):
+    event.meta = json.loads(event.description)
+    return event
+
 if __name__ == "__main__":
-    del_spoof_data()
-#    cases = gen_spoof_data()
+    events = get_todays_events()
+
+    for event in events:
+        print(apply_meta(event).meta['surgeon'])
 
 

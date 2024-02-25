@@ -1,15 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>events</h2>
+    <h2>Cases</h2>
     {% for event in calendar %}
     <hr>
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ event.summary}}</h5>
-                <h5 class="card-subtitle text-muted">{{event.start.strftime('%Y-%m-%d') }}: Start {{ event.start.strftime('%H%M') }} End {{event.end.strftime('%H%M') }}</h5>
+                <h5 class="card-subtitle text-muted">{{event.start.strftime('%Y-%m-%d') }}: Start {{ event.start.strftime('%H%M') }} End {{event.end.strftime('%H%M') }} - {{ event.location }}</h5>
                 <p class="card-text">{{ event.description }}</p>
             </div>
+            <ul class="list-group list-group-flush list-group-horizontal">
+                <li class="flex-fill list-group-item">Surgeon: {{ event.meta['surgeon'] }} | Anaesthetist: {{ event.meta['anaesthetist'] }}</li>
+                </ul>
+            </ul>
         </div>
     {% endfor %}  
 {% endblock %}
