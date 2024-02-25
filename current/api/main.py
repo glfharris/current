@@ -28,6 +28,7 @@ async def request_form(request: Request):
 async def create_case_request(casename: str = Form(...), length: int = Form(...), nhsno: int = Form(...)):
     case = CaseRequest(operation_name=casename, estimated_length=length, requested_date=str(datetime.now()), priority=0, equipment=[])
     list_case(case)
+    allocate()
     return RedirectResponse("/calendar")
 
 @app.get("/calendar")

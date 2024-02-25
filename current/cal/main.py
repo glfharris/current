@@ -86,6 +86,9 @@ def badge_status(event):
     if now < event.start:
         event.badge = "<span class='badge bg-secondary'>Upcoming</span>"
 
+    if event.end > now.replace(hour=18,minute=0):
+        event.badge = "<span class='badge bg-danger'>Overrunning</span>"
+
     return event
 
 
