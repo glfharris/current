@@ -1,5 +1,6 @@
 
 img.site-logo {
+    border-radius: 10px;
     max-width: 400px;
     align: center;
     margin-left: auto;
