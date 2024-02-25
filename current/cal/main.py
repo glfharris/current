@@ -15,6 +15,7 @@ def list_case(case_request):
     meta = {}
     meta['priority'] = case_request.priority
     meta['equipment'] = case_request.equipment
+    meta['equipment'].append("Drapes")
 
     if "appendix" in case_request.operation_name.lower():
         meta['equipment'].append("Laproscopic Set")

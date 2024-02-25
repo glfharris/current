@@ -8,7 +8,9 @@
             <div class="card-body">
                 <h5 class="card-title">{{ event.summary}}</h5>
                 <h5 class="card-subtitle text-muted">{{event.start.strftime('%Y-%m-%d') }}: Start {{ event.start.strftime('%H%M') }} End {{event.end.strftime('%H%M') }} - {{ event.location }}</h5>
-                <p class="card-text">{{ event.description }}</p>
+                <br><div class="alert alert-warning"><b>Equipment needed:</b>
+                    {{ ", ".join(event.meta['equipment']) }}
+                </div>
             </div>
             <ul class="list-group list-group-flush list-group-horizontal">
                 <li class="flex-fill list-group-item">Surgeon: {{ event.meta['surgeon'] }} | Anaesthetist: {{ event.meta['anaesthetist'] }}</li>
