@@ -31,7 +31,7 @@
                 <a class="nav-link" href="/">List Case</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/calendar">Calendar</a>
+                <a class="nav-link" href="/calendar">Cases</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -58,17 +58,14 @@
 <section class="container">
     {% block content %}
     {% endblock content %}
-
 </section>
 
-{% block footer %}
-<hr>
-<footer>
-    <a href="/calendar">Calendar</a>
-    <a href="/">New Case</a>
-    <a href="/delete">Delete Data</a>
+<footer class="footer page-footer">
+    <div class="container text-muted">
+        <p>An NHS hackday project</p> 
+        <img src="/static/hackday.png">
+    </div>
 </footer>
-{% endblock footer %}
 
 </body>
 </html>
